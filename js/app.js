@@ -1,9 +1,9 @@
-const qwerty = document.getElementById('qwerty');
-const phrase = document.getElementById('phrase');
+const qwertydiv = document.querySelector('#qwerty');
+const phrase = document.querySelector('#phrase');
 const missed = 0;
 const div = document.getElementById('overlay');
 const ul = document.querySelector('ul');
-const li = document.createElement('li');
+const button = document.querySelector('button');
 
 
 // quotes from John Maxwell and Dave Ramsey, me
@@ -18,41 +18,66 @@ var phrases = ['There is no substitute for hard work',
 
 div.addEventListener('click', (e) => {
   div.style.display = "none";
-
 });
 
-// var charactersToGuess = [];
-
 function getRandomPhraseAsArray(arr) {
-  let randomNumber = Math.floor(Math.random() * 5) +1;
-  console.log(randomNumber);
-  let phraseToGuess = arr[randomNumber];
-  let charactersToGuess = Array.from(phraseToGuess);
-  //var charactersToGuess = phraseToGuess.split();
-    console.log(phrases[randomNumber]);
-    console.log(charactersToGuess);
-    return charactersToGuess;
+  let phraseToGuess = arr[Math.floor(Math.random() * arr.length)];
+    console.log(phraseToGuess);
+    return phraseToGuess.split('');
+
 };
 
-getRandomPhraseAsArray(phrases);
+let charactersToGuess = getRandomPhraseAsArray(phrases);
 
 
 function addPhraseToDisplay(arr) {
   //loop over array
-  for (let i = 0; i <= arr.length; i++) {
+  for (let i = 0; i < arr.length; i ++) {
   //put each letter in a var as it loops
-      const letters = arr[i];
       const li = document.createElement('li');
-
-      console.log(letters);
+      li.textContent = arr[i];
+      console.log(li);
       ul.appendChild(li);
-
+      if(li.textContent == " ") {
+        li.className = 'space';
+      } else {
+        li.className = 'letter';
+    }
   }
-
-    // if (li != ' ' ){
-    //   li.className = 'letter';
-
-
-    // }
 };
-addPhraseToDisplay(phrases);
+addPhraseToDisplay(charactersToGuess);
+
+
+qwertydiv.addEventListener('click', (e) => {
+
+  function checkLetter(button) {
+    //get all letters in random phrase
+    const letters = document.querySelectorAll('.letter');
+    var match = 0;
+    var letter = 0;
+    for (let i = 0; i < letters.length; i++) {
+      //get button's letter
+      //compare button against phrase
+      var letter = letters[i].textContent;
+      console.log(letter);
+      console.log(letter.toLowerCase());
+      if (letter.toLowerCase() === e.target.textContent) {
+        console.log('match');
+        var match = e.target.textContent;
+        letters[i].classList.add('show');
+        //return match;
+
+      }else {
+        //missed += 1;
+
+        console.log('null');
+
+      }
+
+    } return match;
+
+  };
+
+  checkLetter();
+
+});
