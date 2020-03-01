@@ -60,12 +60,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     var match = 0;
-    const tries = document.querySelector('ol');
-    const li = tries.childNode;
+
+
 
     function checkLetter(button) {
 
-
+      var tries = document.querySelector('.tries');
+      var ol = tries.parentNode;
       const letters = document.querySelectorAll('.letter');
 
       var letter = 0;
@@ -75,21 +76,31 @@ document.addEventListener('DOMContentLoaded', () => {
         var letter = letters[i].textContent;
         console.log(letter);
         console.log(letter.toLowerCase());
+
+        //loop throught phrase and compare if button letter matches a letter in phrase, if so make it show up and
+
+
         if (letter.toLowerCase() === e.target.textContent) {
           console.log('match');
           var match = e.target.textContent;
           console.log(match);
           letters[i].classList.add('show');
 
-        } else {
+        } //else if it is not a match set to missed++ null and remove heart
+        else {
+
           // return 'null';
           console.log('null');
-          console.log(missed);
+
+
 
         }
       } e.target.classList.add('chosen');
       return match;
-      missed++
+      missed++;
+      console.log(missed);
+        ol.removeChild(tries);
+
     };
     checkLetter();
 
