@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var letterFound = checkLetter();
 
     if (letterFound === null) {
-      var tries = document.getElementsbyTagName('img')[missed];
+      var tries = document.getElementsByTagName('img')[missed];
       tries.src = 'images/lostHeart.png';
       missed++;
       console.log(missed);
