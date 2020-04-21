@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const qwertydiv = document.querySelector('#qwerty');
   const phrase = document.querySelector('#phrase');
   var missed = 0;
+  const resetButton = document.querySelector('.btn__reset');
   const startButton = document.getElementById('overlay');
   const ul = document.querySelector('ul');
   const button = document.querySelector('button');
@@ -106,12 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
       missed++;
       console.log(missed);
     }
+
     var show = document.querySelectorAll('.show');
     var phraseLetters = document.querySelectorAll('.letter');
 
     function checkWin() {
       if (phraseLetters.length === show.length){
         startButton.classList.add('win');
+        
       }
       checkWin();
     }
