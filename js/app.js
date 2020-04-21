@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.getElementById('overlay');
   const ul = document.querySelector('ul');
   const button = document.querySelector('button');
+  var hearts = document.querySelector('#hearts');
+  var tries = document.querySelector('.tries');
 
 
   // quotes from John Maxwell and Dave Ramsey, me
@@ -53,74 +55,64 @@ document.addEventListener('DOMContentLoaded', () => {
 
   qwertydiv.addEventListener('click', (e) => {
 
-    if (e.target.classList.contains('chosen')){
+    if (e.target.classList.contains('chosen')) {
       alert('already chosen');
       return;
+    } else {
+      e.target.classList.add('chosen');
     };
 
-
-    var match = 0;
-
-
+    var match = '';
 
     function checkLetter(button) {
 
-      var tries = document.querySelector('.tries');
-      var ol = tries.parentNode;
+
       const letters = document.querySelectorAll('.letter');
 
       var letter = 0;
       for (let i = 0; i < letters.length; i++) {
+
+
         //get button's letter
         //compare button against phrase
         var letter = letters[i].textContent;
         console.log(letter);
         console.log(letter.toLowerCase());
 
-        //loop throught phrase and compare if button letter matches a letter in phrase, if so make it show up and
-
+        //loop throught phrase and compare if button letter matches a
+        //letter in phrase, if so make it show up and
 
         if (letter.toLowerCase() === e.target.textContent) {
-          console.log('match');
+          //console.log('match');
           var match = e.target.textContent;
           console.log(match);
           letters[i].classList.add('show');
 
-        } //else if it is not a match set to missed++ null and remove heart
-        else {
-
-          // return 'null';
-          console.log('null');
-
-
+        } else {
+          console.log('not a match');
 
         }
-      } e.target.classList.add('chosen');
-      return match;
+      }
+        return match;
+
+
+    }
+    var checked = checkLetter();
+
+    if (checked !== match) {
+      hearts.removeChild(tries);
       missed++;
       console.log(missed);
-        ol.removeChild(tries);
+    }
+    var show = document.querySelectorAll('.show');
+    var phraseLetters = document.querySelectorAll('.letter');
 
-    };
-    checkLetter();
+    function checkWin() {
+      if (phraseLetters.length === show.length){
+        startButton.classList.add('win');
+      }
+      checkWin();
+    }
 
+  });
 });
-
-
-  // if (e.target.classlist === 'chosen') {
-  //   alert("letter already chosen");
-  //}
-  //get all letters in random phrase
-
-
-  //var checked =
-
-  // if (checked === 'null') {
-  //   tries.remove.childNode;
-  //   ++missed;
-  // }
-
-});
-//When I click on a letter not in phrase, I need it to count up 1 miss
-
-//and mark letter as already attempted.
