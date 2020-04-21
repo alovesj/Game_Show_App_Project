@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.getElementById('overlay');
   const ul = document.querySelector('ul');
   const button = document.querySelector('button');
-  var hearts = document.querySelector('#hearts');
-  var tries = document.querySelector('.tries');
+
 
 
   // quotes from John Maxwell and Dave Ramsey, me
@@ -62,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
       e.target.classList.add('chosen');
     };
 
-    var match = '';
+
 
     function checkLetter(button) {
 
 
       const letters = document.querySelectorAll('.letter');
-
+      var match = null;
       var letter = 0;
       for (let i = 0; i < letters.length; i++) {
 
@@ -93,14 +92,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
       }
+        console.log(match);
         return match;
 
 
-    }
-    var checked = checkLetter();
 
-    if (checked !== match) {
-      hearts.removeChild(tries);
+    }
+    var letterFound = checkLetter();
+
+    if (letterFound === null) {
+      var tries = document.getElementsbyTagName('img')[missed];
+      tries.src = 'images/lostHeart.png';
       missed++;
       console.log(missed);
     }
