@@ -108,13 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(missed);
     }
 
-    var show = document.querySelectorAll('.show');
-    var phraseLetters = document.querySelectorAll('.letter');
+
 
     function checkWin() {
+      var show = document.getElementsByClassName("show");
+      var phraseLetters = document.getElementsByClassName('letter');
       if (phraseLetters.length === show.length){
         startButton.classList.add('win');
-        
+       }
       }
       checkWin();
     }
