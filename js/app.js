@@ -62,12 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     qwertydiv.addEventListener('click', (e) => {
-      if (e.target.classList.contains('chosen')) {
-        alert('already chosen');
-        return;
-      } else {
-        e.target.classList.add('chosen');
-      }
+      if (e.target.tagName === 'BUTTON') {
+          e.target.classList.add('chosen');
+          e.target.disabled = 'true';
+        } else {
+          return;
+        }
+
 
     var letterFound = checkLetter(e.target);
     console.log(letterFound);
@@ -80,11 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
     function checkWin() {
-      var show = document.getElementsByClassName("show");
-      var phraseLetters = document.getElementsByClassName('letter');
+      var show = document.querySelectorAll('.show');
+      var phraseLetters = document.querySelectorAll('.letter');
+      var headline = document.querySelector('.title');
       if (phraseLetters.length === show.length){
+        startButton.className = 'win';
         startButton.style.display = 'flex';
-       }
+        headline.innerHTML = "FANTASTIC, YOU WON!!";
+        console.log(headline);
+
+      } else if (missed > 4){
+        startButton.className = 'lose';
+        startButton.style.display = 'flex';
+        headline.innerHTML = "SORRY, YOU LOST :(";
+        console.log(headline);
+      }
       }
 
 });
