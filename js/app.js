@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return phraseToGuess.split('');
   }
 
-  let charactersToGuess = getRandomPhraseAsArray(phrases);
+
 
   function addPhraseToDisplay(arr) {
     //loop over array
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-  addPhraseToDisplay(charactersToGuess);
+
 
     function checkLetter(button) {
       const letters = document.querySelectorAll('.letter');
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < buttons.length; i++){
             if (buttons[i].classList.contains('chosen')){
             buttons[i].classList.remove('chosen');
-            buttons[i].disabled = 'false';
+            buttons[i].removeAttribute('disabled');
           }
         }
           for (let i = 0; i < tries.length; i++) {
@@ -120,15 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
           ul.innerHTML = '';
+          let charactersToGuess = getRandomPhraseAsArray(phrases);
+          addPhraseToDisplay(charactersToGuess);
       }
 
 });
-
-// startButton.addEventListener('click', (e) => {
-//   if (startButton.classList.contains('win')){
-//       resetGame();
-//   } else if (startButton.classList.contains('lose')) {
-//       resetGame();
-//   } else startButton.style.display = "none";
-//
-// });
