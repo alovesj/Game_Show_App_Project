@@ -87,16 +87,17 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
+  transition: width .35s ease-in-out;
 }
 
 .space {
   width: 35px;
 
 }
-
 .show {
   color: #000;
   background-color: #66cccc;
+  width: 100px;
 }
 
 /* Keyboard */
@@ -134,6 +135,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  z-index: 1;
 }
 
 .title {

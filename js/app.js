@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startButton = document.getElementById('overlay');
   const ul = document.querySelector('ul');
   const button = document.querySelector('button');
+  const tries = document.getElementsByTagName('img');
 
   // quotes from John Maxwell and Dave Ramsey, me
   var phrases = ['There is no substitute for hard work',
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   startButton.addEventListener('click', (e) => {
-    startButton.style.display = "none";
+      startButton.style.display = "none";
   });
 
   function getRandomPhraseAsArray(arr) {
@@ -56,6 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (letter.toLowerCase() === button.textContent) {
           match = button.textContent;
           letters[i].classList.add('show');
+          letters[i].style.width = '85px';
+          letters[i].style.height = '85px';
         }
       }
       return match;
@@ -71,10 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     var letterFound = checkLetter(e.target);
+
     console.log(letterFound);
-    if (letterFound === null) {
-      var tries = document.getElementsByTagName('img')[missed];
-      tries.src = 'images/lostHeart.png';
+    if (letterFound === null && missed <= 5) {
+
+      tries[missed].src = 'images/lostHeart.png';
       missed++;
     }
     checkWin();
@@ -87,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (phraseLetters.length === show.length){
         startButton.className = 'win';
         startButton.style.display = 'flex';
+        resetButton.innerHTML= "Play Again";
         headline.innerHTML = "FANTASTIC, YOU WON!!";
         console.log(headline);
 
@@ -94,8 +99,39 @@ document.addEventListener('DOMContentLoaded', () => {
         startButton.className = 'lose';
         startButton.style.display = 'flex';
         headline.innerHTML = "SORRY, YOU LOST :(";
+        resetButton.innerHTML= "Play Again";
         console.log(headline);
       }
       }
+      resetButton.addEventListener('click', (e) => {
+        startButton.style.display = "none";
+        resetGame();
+      });
+      function resetGame() {
+        const buttons = document.querySelectorAll('.chosen');
+        for (let i = 0; i < buttons.length; i++){
+            if (buttons[i].classList.contains('chosen')){
+            buttons[i].classList.remove('chosen');
+            buttons[i].disabled = 'false';
+          }
+        }
+          for (let i = 0; i <= tries.length; i++) {
+            tries[i].src = 'images/liveHeart.png';
+            missed = 0;
+        }
+          for (let i = 0; i <= ul.length; i++){
+            ul.removeChild(li);
+        }
+
+      }
 
 });
+
+// startButton.addEventListener('click', (e) => {
+//   if (startButton.classList.contains('win')){
+//       resetGame();
+//   } else if (startButton.classList.contains('lose')) {
+//       resetGame();
+//   } else startButton.style.display = "none";
+//
+// });
