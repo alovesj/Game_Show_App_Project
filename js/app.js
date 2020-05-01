@@ -57,8 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (letter.toLowerCase() === button.textContent) {
           match = button.textContent;
           letters[i].classList.add('show');
-          letters[i].style.width = '85px';
-          letters[i].style.height = '85px';
+          letters[i].style.width = '75px';
         }
       }
       return match;
@@ -120,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             missed = 0;
         }
           for (let i = 0; i <= ul.length; i++){
-            ul.removeChild(li);
+            ul[i].removeChild(li);
         }
 
       }
