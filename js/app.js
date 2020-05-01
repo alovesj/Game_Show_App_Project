@@ -114,14 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
             buttons[i].disabled = 'false';
           }
         }
-          for (let i = 0; i <= tries.length; i++) {
+          for (let i = 0; i < tries.length; i++) {
             tries[i].src = 'images/liveHeart.png';
             missed = 0;
-        }
-          for (let i = 0; i <= ul.length; i++){
-            ul[i].removeChild(li);
-        }
 
+        }
+          ul.innerHTML = '';
       }
 
 });
